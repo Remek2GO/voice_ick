@@ -2,6 +2,7 @@ import json
 import vosk
 import pyaudio
 from difflib import get_close_matches
+import os
 
 
 class VoiceCommandRecognizer:
@@ -60,10 +61,11 @@ class VoiceCommandRecognizer:
 
 if __name__ == "__main__":
     commands_file = "commands.json"  # sczytujemyz plikujson zawierającego komendy
-    recognizer = VoiceCommandRecognizer("models/vosk-model-en-us-0.22", commands_file)
+    model_path = os.path.join("models","vosk-model-en-us-0.22")
+    recognizer = VoiceCommandRecognizer(model_path, commands_file)
 
-    # print("Setup recognizera skończony, można mówić")
-    # while True:
-    #     command = recognizer.process_audio()
-    #     if command:
-    #         print(f"Rozpoznano komendę: {command}")
+    print("Setup recognizera skończony, można mówić")
+    while True:
+        command = recognizer.process_audio()
+        if command:
+            print(f"Rozpoznano komendę: {command}")

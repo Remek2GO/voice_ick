@@ -1,5 +1,5 @@
 # Project dependencies (required Python packages)
 
 #Recognizer libriaries
-pip install vosk
-pip install pyaudio
+vosk
+pyaudio
