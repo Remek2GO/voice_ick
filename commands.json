@@ -1,0 +1,6 @@
+{
+    "jump": ["jump", "dump", "lump"],
+    "shoot": ["shoot", "suit", "shut"],
+    "take": ["take", "cake", "fake"],
+    "run": ["run", "fun", "sun"]
+}
