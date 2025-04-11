@@ -44,20 +44,23 @@ class VoiceCommandRecognizer:
         Dopasowuje rozpoznany tekst do najbliższej komendy lub jej alternatywy.
         """
         words = recognized_text.split()
-    
+        result = None
         for word in words:
             matches = get_close_matches(word, self.commands.keys(), n=1, cutoff=0.6)
             if matches:
-                return self.commands[matches[0]]
-        return None
+                if result is None:
+                    result = "2"+self.commands[matches[0]]
+                else:
+                    result += self.commands[matches[0]]
+        return result
 
     def _reset_recognizer(self):
         """Resetuje recognizera (czyści bufor dźwięku)."""
-        self.recognizer = vosk.KaldiRecognizer(self.model, 16000)
+        self.recognizer.Reset()
 
 
     def process_audio(self):
-        data = self.audio_stream.read(4000, exception_on_overflow=False)
+        data = self.audio_stream.read(1000, exception_on_overflow=False)
 
         if self.recognizer.AcceptWaveform(data):
             partial_result = json.loads(self.recognizer.PartialResult())
@@ -72,8 +75,10 @@ class VoiceCommandRecognizer:
 
 if __name__ == "__main__":
     commands_file = "commands.json"  # sczytujemy z pliku JSON zawierającego komendy
-    model_path = os.path.join("models", "vosk-model-en-us-0.22")
-    recognizer = VoiceCommandRecognizer(model_path, commands_file)
+    model_path_big = os.path.join("models", "vosk-model-en-us-0.22")
+    model_path_small = os.path.join("models", "vosk-model-small-en-us-0.15")
+
+    recognizer = VoiceCommandRecognizer(model_path_small, commands_file)
 
     print("Setup recognizera skończony, można mówić")
     while True:

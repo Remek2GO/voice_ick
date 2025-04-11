@@ -17,6 +17,8 @@ def communication(queue : mp.Queue, serverIP = "127.0.0.1", serverPort = 8888, b
         while True:
             message = queue.get()
             udpClient.createAndSendMessage(message)
+            logging.info(f"Message was send - MSG: {message}")
+
     finally:
         udpClient.closeSocket()
 
@@ -40,7 +42,7 @@ def main(command_file, model_path, serverIP = "127.0.0.1", serverPort = 8888, bu
 
 if __name__ == "__main__":
     commands_file = os.path.join("commands.json")
-    model_path = os.path.join("models","vosk-model-en-us-0.22")
+    model_path = os.path.join("models", "vosk-model-small-en-us-0.15")
     serverIP = "127.0.0.1"
     serverPort = 8888
     bufferSize = 1024
