@@ -12,7 +12,7 @@ To set up the project and install the required dependencies, follow these steps:
    ```bash
    git clone https://github.com/Remek2GO/voice_ick.git
    cd voice_ick
-   pip install -r requirements.txt
+   bash setup.sh
    ```
 
 ### Run the app

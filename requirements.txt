@@ -1,5 +1,0 @@
-# Project dependencies (required Python packages)
-
-#Recognizer libriaries
-vosk
-pyaudio
