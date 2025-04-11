@@ -46,7 +46,7 @@ class VoiceCommandRecognizer:
         words = recognized_text.split()
     
         for word in words:
-            matches = get_close_matches(word, self.commands.keys(), n=1, cutoff=0.7)
+            matches = get_close_matches(word, self.commands.keys(), n=1, cutoff=0.6)
             if matches:
                 return self.commands[matches[0]]
         return None

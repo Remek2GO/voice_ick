@@ -1,8 +1,8 @@
 {
-    "heal": ["heal", "hill", "huh", "here"],
+    "heal": ["heal", "hill", "huh", "here","he'll"],
     "block": ["block", "shoot", "yield"],
     "attack": ["attack", "talk", "thought"],
-    "run": ["run", "room", "around", "another"],
+    "aim": ["aim", "aimed", "aiming","I'm"],
     "enter": ["enter", "inter", "winter"],
     "cancel": ["cancel", "concept", "console","castle", "council"]
 }
