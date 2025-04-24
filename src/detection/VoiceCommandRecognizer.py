@@ -73,15 +73,15 @@ class VoiceCommandRecognizer:
         return None
 
 
-if __name__ == "__main__":
-    commands_file = "commands.json"  # sczytujemy z pliku JSON zawierającego komendy
-    model_path_big = os.path.join("models", "vosk-model-en-us-0.22")
-    model_path_small = os.path.join("models", "vosk-model-small-en-us-0.15")
-
-    recognizer = VoiceCommandRecognizer(model_path_small, commands_file)
-
-    print("Setup recognizera skończony, można mówić")
-    while True:
-        command = recognizer.process_audio()
-        if command:
-            print(f"Rozpoznano komendę: {command}")
+# if __name__ == "__main__":
+#     commands_file = "commands.json"  # sczytujemy z pliku JSON zawierającego komendy
+#     model_path_big = os.path.join("models", "vosk-model-en-us-0.22")
+#     model_path_small = os.path.join("models", "vosk-model-small-en-us-0.15")
+#
+#     recognizer = VoiceCommandRecognizer(model_path_small, commands_file)
+#
+#     print("Setup recognizera skończony, można mówić")
+#     while True:
+#         command = recognizer.process_audio()
+#         if command:
+#             print(f"Rozpoznano komendę: {command}")
