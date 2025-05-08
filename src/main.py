@@ -10,14 +10,26 @@ from src.detection.VoiceCommandRecognizer import VoiceCommandRecognizer
 
 logging.basicConfig(level=logging.DEBUG,  # Ustawiamy minimalny poziom logowania
                     format='%(asctime)s - %(levelname)s - %(message)s')  # Format logów
-
+mapC2Name = {"0": "enter",
+    "1": "cancel",
+    "2": "fight",
+    "3": "block",
+    "4": "heal",
+    "5": "aim"}
 def communication(queue : mp.Queue, serverIP = "127.0.0.1", serverPort = 8888, bufferSize = 1024, protocol = socket.AF_INET, tiemout = 0.2):
     udpClient = UdpClient(serverIP=serverIP, serverPort=serverPort,bufferSize=bufferSize,protocol=protocol,tiemout=tiemout)
     try:
         while True:
             message = queue.get()
             udpClient.createAndSendMessage(message)
-            logging.info(f"Message was send - MSG: {message}")
+            cccc = ""
+            for idx, el in enumerate(message):
+                if idx == 0:
+                    continue
+                cccc = cccc + mapC2Name[el] + ", "
+            cccc = cccc[:-2]
+            
+            logging.info(f"Message was send - MSG: {message} -> Grupa Voice: {cccc}")
 
     finally:
         udpClient.closeSocket()
@@ -43,8 +55,8 @@ def main(command_file, model_path, serverIP = "127.0.0.1", serverPort = 8888, bu
 if __name__ == "__main__":
     commands_file = os.path.join("commands.json")
     model_path = os.path.join("models", "vosk-model-small-en-us-0.15")
-    serverIP = "127.0.0.1"
-    serverPort = 8888
+    serverIP = "192.168.0.109"
+    serverPort = 4242
     bufferSize = 1024
     protocol = socket.AF_INET
     tiemout = 0.2
